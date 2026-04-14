@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbearia</title>
+
+<script>
+// 🔥 CONFIGURAÇÃO RÁPIDA (SÓ EDITAR AQUI)
+const CONFIG = {
+  nome: "Barbearia João Elias",
+  whatsapp: "554195179344",
+  instagram: "https://www.instagram.com/barbeariajohnsix/",
+  bot-barbearia: "http://72.60.154.42:3000",
+  cidade: "Curitiba",
+
+  fotos: [
+    "https://i.imgur.com/oZD71M4.jpeg",
+    "https://i.imgur.com/OGN7Lc1.jpeg",
+    "https://images.unsplash.com/photo-1599351431202-1e0f0137899a"
+  ]
+};
+</script>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0a0a0a;
+  color: white;
+  text-align: center;
+}
+
+header {
+  padding: 40px 20px;
+  background: linear-gradient(45deg, #000, #1a1a1a);
+}
+
+h1 {
+  font-size: 36px;
+}
+
+p {
+  color: #ccc;
+}
+
+.btn-main {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 30px;
+  background: #25d366;
+  color: white;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.horarios {
+  padding: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.horario {
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.horario:hover {
+  background: #25d366;
+}
+
+.galeria img {
+  width: 90%;
+  max-width: 300px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.instagram {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 25px;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #fd1d1d, #833ab4);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.facebook {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 25px;
+  border-radius: 30px;
+  background: #1877f2;
+  color: white;
+  text-decoration: none;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  background: #000;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1 id="nome"></h1>
+  <p>Agende rápido pelo WhatsApp</p>
+
+  <a class="btn-main" id="btnWhats">Falar no WhatsApp</a>
+</header>
+
+<section class="horarios">
+  <h2>Escolha um horário</h2>
+
+  <div class="grid">
+    <div class="horario" onclick="agendar('09:00')">09:00</div>
+    <div class="horario" onclick="agendar('10:00')">10:00</div>
+    <div class="horario" onclick="agendar('11:00')">11:00</div>
+    <div class="horario" onclick="agendar('14:00')">14:00</div>
+    <div class="horario" onclick="agendar('15:00')">15:00</div>
+    <div class="horario" onclick="agendar('16:00')">16:00</div>
+  </div>
+</section>
+
+<section class="galeria" id="galeria">
+  <h2>Sobre nós</h2>
+</section>
+
+<section>
+  <h2>Redes sociais</h2>
+
+  <a class="instagram" id="insta">Instagram</a>
+  <a class="facebook" id="face">Facebook</a>
+</section>
+
+<section>
+  <h2>Localização</h2>
+  <p id="cidade"></p>
+  <iframe id="mapa" width="90%" height="250"></iframe>
+</section>
+
+<footer>
+  Atendimento rápido via WhatsApp
+</footer>
+
+<script>
+// 🔥 APLICAR CONFIG
+document.getElementById("nome").innerText = "💈 " + CONFIG.nome;
+document.getElementById("cidade").innerText = CONFIG.cidade;
+
+document.getElementById("btnWhats").href =
+  "https://wa.me/" + CONFIG.whatsapp;
+
+document.getElementById("insta").href = CONFIG.instagram;
+document.getElementById("face").href = CONFIG.facebook;
+
+document.getElementById("mapa").src =
+  "https://www.google.com/maps?q=" + CONFIG.cidade + "&output=embed";
+
+// 📸 GALERIA AUTOMÁTICA
+const galeria = document.getElementById("galeria");
+
+CONFIG.fotos.forEach(foto => {
+  const img = document.createElement("img");
+  img.src = foto;
+  galeria.appendChild(img);
+});
+
+// 📲 AGENDAMENTO
+function agendar(horario) {
+  const msg = `Olá, quero agendar um corte às ${horario} 💈 Está disponível?`;
+  const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
